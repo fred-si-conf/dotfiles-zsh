@@ -16,7 +16,7 @@ if [[ -f "$HOME/.cargo/env" ]];then
     source "$HOME/.cargo/env"
 fi
 
-for p in "${HOME}/.local/bin"; do
+for p in "${HOME}/.local/bin" "${ZDOTDIR}/misc_tools"; do
 	[[ ! "${PATH}" =~ "$p" ]] \
         && [[ -d "$p" ]] \
 		&& export PATH="${PATH}:${p:A}"
