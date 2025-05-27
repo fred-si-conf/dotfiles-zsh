@@ -13,6 +13,10 @@ alias git_modified_files='git diff --name-only'
 alias gmf='git_modified_files'
 alias -g GMF='$(git_modified_files)'
 
+alias git_tracked_files='git ls-tree --name-only --full-tree -r HEAD'
+alias gtf='git_tracked_files'
+alias -g GTF='$(git_tracked_files)'
+
 alias gf='git-flow'
 alias gff='git-flow feature'
 
