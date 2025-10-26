@@ -18,7 +18,7 @@ if [[ $HOST != 'frederic' ]]; then
     alias mkdir='mkdir -m 770'
 fi
 
-alias cp='rsync -aPh'
+alias cp='rsync --archive --progress --human-readable'
 alias -g ZERO='shred -zu -n 0'
 alias vim='nvim'
 alias view='nvim -R'
