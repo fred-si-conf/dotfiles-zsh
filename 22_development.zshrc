@@ -40,18 +40,19 @@ alias su='snapshot-update'
 alias ms='mypy --follow-import=silent'
 
 # Docker
-alias dr='docker run -it'
-alias dv='docker run -it -v "$(pwd):/app" -w /app'
+alias di='docker run -it'
+alias dw='docker run -it --volume="$(pwd):/app" --workdir "/app"'
 
 alias dc='docker compose'
-alias dcu='dc up -d'
-alias dce='dc exec'
+alias dcu='dc up -d --remove-orphans'
+alias dce='dc exec --remove-orphans'
 alias dcd='dc down --remove-orphans'
 
-alias dr='dcd; dcu'
-alias drb='dcd; dc up -d --build'
-alias drbf='dc up -d --always-recreate-deps --force-recreate --build'
-alias dcc='dc down --remove-orphans --rmi all --volumes'
+alias dr='dcu --always-recreate-deps --force-recreate'
+alias drb='dr --build'
+alias dcc='dcd --rmi all --volumes'
+alias drbf='dcc;dcu'
 
+# Autres
 alias create_python_project='cookiecutter git+ssh://git@github.com/Fred-si/python-template.git'
 
