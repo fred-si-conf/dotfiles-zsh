@@ -1,5 +1,10 @@
 #!/bin/zsh
 
+# Redirections
+alias -g NS='> /dev/null'      ## No Standard
+alias -g NE='2> /dev/null'     ## No Error
+alias -g NM='> /dev/null 2>&1' ## No Message
+
 # Navigation
 alias ls='ls --color=auto --group-directories-first'
 alias l='ls'
@@ -12,6 +17,10 @@ alias ..='cd ..'
 alias cd..='cd ..'
 alias ,,='cd ..'
 alias é='cd ~'
+
+if where batcat NM && ! where bat NM; then
+    alias bat=batcat
+fi
 
 # Fichiers et dossiers
 if [[ $HOST != 'frederic' ]]; then
@@ -95,10 +104,6 @@ alias -g T='|tail'
 alias -g W='|wc -l'
 alias -g X='|xargs'
 
-# Redirections
-alias -g NS='> /dev/null'      ## No Standard
-alias -g NE='2> /dev/null'     ## No Error
-alias -g NM='> /dev/null 2>&1' ## No Message
 
 # Pastebin
 alias -g IX="|& curl -s -F 'f:1=<-' ix.io"
