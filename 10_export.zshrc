@@ -5,6 +5,9 @@ export CORRECT_IGNORE_FILE='.*'
 [[ $HOST == "lysa" ]] \
     && export BATTERY=1
 
+export PROMPT_BIP_ENABLED=1
+export PROMPT_BIP_AFTER_SECONDS=0
+
 # Tools
 export PAGER="less"
 export IMG_VIEWER="sxiv"
