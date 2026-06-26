@@ -6,7 +6,7 @@ venv() {
     destroy() {
         print_warning "Destroying virtual environnement"
 
-        local path_to_remove=(__pycache__ venv .mypy_cache)
+        local path_to_remove=(__pycache__ venv .mypy_cache .venv)
         local error="false"
 
 
@@ -49,14 +49,22 @@ venv() {
         fi
 
         if [[ -e 'venv' ]]; then
+            venv_dir='venv'
+        elif [[ -e '.venv' ]]; then
+            venv_dir='.venv'
+        else
+            venv_dir='venv'
+        fi
+
+        if [[ -e "$venv_dir" ]]; then
             print_info "Venv already exist, skip init"
-            source venv/bin/activate && return 0 || return 1
+            source ${venv_dir}/bin/activate && return 0 || return 1
         fi
 
         print_info "Venv not exist, create it"
 
-        python${python_version} -m venv venv || return 1
-        source venv/bin/activate || return 1
+        python${python_version} -m venv ${venv_dir} || return 1
+        source ${venv_dir}/bin/activate || return 1
 
         print_info "Upgrade pip"
         pip install --upgrade pip
@@ -72,10 +80,10 @@ venv() {
             print_info "No requirements file found"
         fi
 
-        mypy='venv/bin/mypy'
+        mypy="${venv_dir}/bin/mypy"
         [[ -f $mypy ]] && $mypy --install-types --non-interactive .
 
-        pre_commit='venv/bin/pre-commit'
+        pre_commit="${venv_dir}/bin/pre-commit"
         [[ -f $pre_commit ]] && $pre_commit install --install-hooks
 
         return 0
