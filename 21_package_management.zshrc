@@ -17,7 +17,7 @@ if [[ -e /usr/bin/pacman ]]; then
 	alias upd='sudo pacman -Sy && pacman -Qu'
 
     if where yay >/dev/null; then
-        alias yay='yay --answerclean All --answerdiff None --cleanafter --removemake --sudoloop'
+        alias yay='yay --answerclean All --cleanafter --removemake --sudoloop'
     fi
 
 elif [[ -e /usr/bin/apt ]]; then
