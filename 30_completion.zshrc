@@ -1,5 +1,9 @@
 #!/bin/zsh
 
+if [[ -e ~/.zfunc ]]; then
+    fpath+=~/.zfunc
+fi
+
 # Use modern completion system
 zmodload zsh/complist
 autoload -Uz compinit
