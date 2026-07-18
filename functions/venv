@@ -6,7 +6,11 @@ venv() {
     destroy() {
         print_warning "Destroying virtual environnement"
 
-        local path_to_remove=(__pycache__ venv .mypy_cache .venv)
+        local path_to_remove=(
+            __pycache__
+            venv .venv
+            .mypy_cache .ruff_cache .black_cache
+        )
         local error="false"
 
 
