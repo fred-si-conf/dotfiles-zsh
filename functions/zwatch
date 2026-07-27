@@ -45,7 +45,7 @@ zwatch() {
     fi
 
     local -a files_to_watch
-    for file in ${files}; do
+    for file in ${~files}; do
         if [[ "$file" =~ '^-' ]]; then
             continue
         fi
